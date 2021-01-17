@@ -13,7 +13,19 @@ public interface TourPackagesDao extends JpaRepository<TourPackages, Long>
 	@Query("from TourPackages")
 	public List<TourPackages> getPackages();
 	
-	@Query(value="SELECT * FROM tour_packages join category_master on tour_packages.catmaster_id=category_master.catmaster_id where category_master.subcat_id is not null", nativeQuery = true)
-	public List<TourPackages> getSubPackages();
+	@Query(value="SELECT * FROM tour_packages where subcategory_id=3;", nativeQuery = true)
+	public List<Object[]> getkashmirsubpackages();
+	/*@Query(value="SELECT tour_packages.package_id as tourpackid, tour_packages.package_name as tourpackname, tour_packages.photo as tourpackphoto FROM tour_packages join sub_categories \r\n"
+			+ "on tour_packages.subcategory_id=sub_categories.subcategory_id where \r\n"
+			+ "sub_categories.maincategory_id=1;", nativeQuery = true)
+	public List<Object[]> getDomesticPackages();
+	
+	@Query(value="SELECT tour_packages.package_id as tourpackid, tour_packages.package_name as tourpackname, tour_packages.photo as tourpackphoto FROM tour_packages join sub_categories \r\n"
+			+ "on tour_packages.subcategory_id=sub_categories.subcategory_id where \r\n"
+			+ "sub_categories.maincategory_id=2;;", nativeQuery = true)
+	public List<Object[]> getInternationalPackages();*/
+
+	@Query(value="SELECT * FROM tour_packages where subcategory_id=4;",nativeQuery=true)
+	public List<Object[]> getchardhamsubpackages();
 	
 }

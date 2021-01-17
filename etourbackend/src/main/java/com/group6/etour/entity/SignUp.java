@@ -19,7 +19,8 @@ public class SignUp
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SignUp(long signup_id, String email_id, String password) {
+	public SignUp(long signup_id, String email_id, String password)
+	{
 		super();
 		this.signup_id = signup_id;
 		this.email_id = email_id;

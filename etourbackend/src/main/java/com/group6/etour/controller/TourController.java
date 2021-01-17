@@ -4,28 +4,33 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.group6.etour.entity.BookingDetails;
 import com.group6.etour.entity.BookingHeader;
-import com.group6.etour.entity.CategoryMaster;
 import com.group6.etour.entity.Customer;
+import com.group6.etour.entity.MainCategories;
 import com.group6.etour.entity.PackageCost;
 import com.group6.etour.entity.PackageItinery;
 import com.group6.etour.entity.SignUp;
+import com.group6.etour.entity.SubCategories;
 import com.group6.etour.entity.TourDate;
 import com.group6.etour.entity.TourPackages;
-import com.group6.etour.repository.CategoryMasterDao;
+import com.group6.etour.repository.MainCategoriesDao;
+import com.group6.etour.repository.SignUpDao;
+import com.group6.etour.repository.SubCategoriesDao;
 import com.group6.etour.repository.TourPackagesDao;
 import com.group6.etour.services.BookingDetailsService;
 import com.group6.etour.services.BookingHeaderService;
-import com.group6.etour.services.CategoryMasterService;
 import com.group6.etour.services.CustomerService;
+import com.group6.etour.services.MainCategoriesService;
 import com.group6.etour.services.PackageCostService;
 import com.group6.etour.services.PackageItineryService;
 import com.group6.etour.services.SignUpService;
+import com.group6.etour.services.SubCategoriesService;
 import com.group6.etour.services.TourDateService;
 import com.group6.etour.services.TourPackagesService;
 
@@ -35,15 +40,24 @@ import com.group6.etour.services.TourPackagesService;
 @RestController
 public class TourController 
 {
-	@Autowired
-	private CategoryMasterDao categorymasterDao;
 	
+	@Autowired
+	private SubCategoriesDao subcategoriesDao ;
+	
+	@Autowired
+	private MainCategoriesDao maincategoriesDao ;
+	
+	@Autowired
+	private SignUpDao signupDao;
 	
 	@Autowired
 	private TourPackagesDao tourpackagesDao;
 	
 	@Autowired
-	private CategoryMasterService categorymasterService;
+	private MainCategoriesService maincategoriesService;
+	
+	@Autowired
+	private SubCategoriesService subcategoriesService;
 	
 	@Autowired
 	private TourPackagesService tourpackagesService;
@@ -69,12 +83,9 @@ public class TourController
 	@Autowired 
 	private BookingDetailsService bookingdetailsService;
 	
-	@PostMapping("/CategoryMaster")
-	public CategoryMaster addCategoryMaster(@RequestBody CategoryMaster catmas)
-	{
-		return this.categorymasterService.addCategoryMaster(catmas);
-	}
-
+	
+	
+	
 	@PostMapping("/TourPackages")
 	public TourPackages addTourPackages(@RequestBody TourPackages tourpack)
 	{
@@ -124,11 +135,24 @@ public class TourController
 		return this.bookingdetailsService.addBookingDetails(bookdetails);
 	}
 	
-	@GetMapping("/GetCategories")
-	public List<CategoryMaster> getCategories()
+	@PostMapping("/MainCategories")
+	public MainCategories addMainCategory(@RequestBody MainCategories maincategory) 
 	{
-		return this.categorymasterService.getCategories();
+		return this.maincategoriesService.addMainCategory(maincategory);
 	}
+	
+	@PostMapping("/SubCategories")
+	public SubCategories addSubCategory(@RequestBody SubCategories subcategory) 
+	{
+		return this.subcategoriesService.addSubCategory(subcategory);
+	}
+	
+	@PostMapping("/Login/{email_id}&{password}")
+	public SignUp authenticate(@PathVariable String email_id, @PathVariable String password) 
+	{
+		return this.signupDao.authenticate(email_id, password);
+	}
+	
 	
 	@GetMapping("/GetPackages")
 	public List<TourPackages> getPackages()
@@ -136,16 +160,26 @@ public class TourController
 		return this.tourpackagesDao.getPackages();
 	}
 	
-	@GetMapping("/GetSubCategory")
-	public List<CategoryMaster> getSubCategory()
+	@GetMapping("/maincategories")
+	public List<MainCategories> getMainCategories()
 	{
-		return this.categorymasterDao.getSubCategory();
+		return this.maincategoriesDao.getMainCategories();
+	}
+	@GetMapping("/kashmirsub")
+	public List<Object[]> getkashmirsubpackages()
+	{
+		return this.tourpackagesDao.getkashmirsubpackages();
 	}
 	
-	@GetMapping("/GetSubPackages")
-	public List<TourPackages> getSubPackages()
+	@GetMapping("/subcategories")
+	public List<Object> getSubCategories()
 	{
-		return this.tourpackagesDao.getSubPackages();
+		return this.subcategoriesDao.getSubCategories();
 	}
 	
+	@GetMapping("/chardhamsub")
+	public List<Object[]> getchardhamsubpackages()
+	{
+		return this.tourpackagesDao.getchardhamsubpackages();
+	}
 }
