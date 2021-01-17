@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class TourPackages 
@@ -29,6 +30,7 @@ public class TourPackages
 	long catmaster_id;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@Transient
 	@JoinColumn(name="catmaster_id",referencedColumnName="catmaster_id",insertable=false,updatable=false)
 	private CategoryMaster catmaster;
 

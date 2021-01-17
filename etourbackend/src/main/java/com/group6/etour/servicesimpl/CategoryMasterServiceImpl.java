@@ -1,15 +1,17 @@
-package com.group6.etour.services;
+package com.group6.etour.servicesimpl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.group6.etour.dao.CategoryMasterDao;
 import com.group6.etour.entity.CategoryMaster;
+import com.group6.etour.repository.CategoryMasterDao;
+import com.group6.etour.services.CategoryMasterService;
 
 @Service
-public class CategoryMasterServiceImpl implements CategoryMasterService {
+public class CategoryMasterServiceImpl implements CategoryMasterService 
+{
 
 	@Autowired
 	private CategoryMasterDao categorymasterDao;
@@ -24,11 +26,11 @@ public class CategoryMasterServiceImpl implements CategoryMasterService {
 	}
 
 	@Override
-	public List<CategoryMaster> getCategories() 
-	{
+	public List<CategoryMaster> getCategories() {
 		// TODO Auto-generated method stub
 		return categorymasterDao.findAll();
-		
 	}
+
+	
 
 }
