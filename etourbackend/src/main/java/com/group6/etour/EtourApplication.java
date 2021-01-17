@@ -5,8 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class EtourApplication {
-
-	public static void main(String[] args) {
+//Commenting
+	public static void main(String[] args) 
+	{
 		SpringApplication.run(EtourApplication.class, args);
 	}
 

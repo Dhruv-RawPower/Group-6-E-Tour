@@ -1,10 +1,11 @@
-package com.group6.etour.services;
+package com.group6.etour.servicesimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.group6.etour.dao.PackageItineryDao;
 import com.group6.etour.entity.PackageItinery;
+import com.group6.etour.repository.PackageItineryDao;
+import com.group6.etour.services.PackageItineryService;
 
 @Service
 public class PackageItineryServiceImpl implements PackageItineryService {

@@ -1,10 +1,11 @@
-package com.group6.etour.services;
+package com.group6.etour.servicesimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.group6.etour.dao.BookingHeaderDao;
 import com.group6.etour.entity.BookingHeader;
+import com.group6.etour.repository.BookingHeaderDao;
+import com.group6.etour.services.BookingHeaderService;
 
 @Service
 public class BookingHeaderServiceImpl implements BookingHeaderService {

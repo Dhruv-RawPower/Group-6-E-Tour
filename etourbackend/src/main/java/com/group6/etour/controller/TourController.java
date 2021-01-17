@@ -17,6 +17,8 @@ import com.group6.etour.entity.PackageItinery;
 import com.group6.etour.entity.SignUp;
 import com.group6.etour.entity.TourDate;
 import com.group6.etour.entity.TourPackages;
+import com.group6.etour.repository.CategoryMasterDao;
+import com.group6.etour.repository.TourPackagesDao;
 import com.group6.etour.services.BookingDetailsService;
 import com.group6.etour.services.BookingHeaderService;
 import com.group6.etour.services.CategoryMasterService;
@@ -33,6 +35,13 @@ import com.group6.etour.services.TourPackagesService;
 @RestController
 public class TourController 
 {
+	@Autowired
+	private CategoryMasterDao categorymasterDao;
+	
+	
+	@Autowired
+	private TourPackagesDao tourpackagesDao;
+	
 	@Autowired
 	private CategoryMasterService categorymasterService;
 	
@@ -115,10 +124,28 @@ public class TourController
 		return this.bookingdetailsService.addBookingDetails(bookdetails);
 	}
 	
-	
-	@GetMapping("/Category")
+	@GetMapping("/GetCategories")
 	public List<CategoryMaster> getCategories()
 	{
 		return this.categorymasterService.getCategories();
 	}
+	
+	@GetMapping("/GetPackages")
+	public List<TourPackages> getPackages()
+	{
+		return this.tourpackagesDao.getPackages();
+	}
+	
+	@GetMapping("/GetSubCategory")
+	public List<CategoryMaster> getSubCategory()
+	{
+		return this.categorymasterDao.getSubCategory();
+	}
+	
+	@GetMapping("/GetSubPackages")
+	public List<TourPackages> getSubPackages()
+	{
+		return this.tourpackagesDao.getSubPackages();
+	}
+	
 }

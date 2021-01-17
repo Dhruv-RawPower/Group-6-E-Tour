@@ -10,4 +10,7 @@ public interface CategoryMasterService
 	public CategoryMaster addCategoryMaster(CategoryMaster catmas);
 
 	public List<CategoryMaster> getCategories();
+
+	
+		
 }

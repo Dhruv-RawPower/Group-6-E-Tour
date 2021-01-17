@@ -1,10 +1,11 @@
-package com.group6.etour.services;
+package com.group6.etour.servicesimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.group6.etour.dao.SignUpDao;
 import com.group6.etour.entity.SignUp;
+import com.group6.etour.repository.SignUpDao;
+import com.group6.etour.services.SignUpService;
 
 @Service
 public class SignUpServiceImpl implements SignUpService {
